@@ -1,3 +1,7 @@
+---
+categories: [StableDiffsion]
+tags: [图解, Swift, StableDiffsion]
+---
 # Swift Stable Diffusion
 
 https://github.com/huggingface/swift-coreml-diffusers
