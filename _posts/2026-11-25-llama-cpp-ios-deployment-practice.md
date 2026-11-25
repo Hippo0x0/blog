@@ -219,11 +219,11 @@ DDPM → Latent Diffusion ───┴→ Stable Diffusion → SDXL
 
 1. MiniCPM-2B： 清华系面壁智能公司出品，基本上只有最高端iOS设备才能勉强运行起来，非常容易OOM，不可用状态，试用App简陋，在移动端显然不能使用这个模型，除非自己愿意付出成本做2bit量化。<https://github.com/OpenBMB/MiniCPM-V-Apps>
 
-![Llama.cpp iOS 端侧部署实践配图]({{ '/assets/posts/llama-cpp-ios/1418.png' | relative_url }})
+![Llama.cpp iOS 端侧部署实践配图](/assets/posts/llama-cpp-ios/1418.png)
 
 1. 苹果的FastVLM：苹果在这个模型使用一个单独的视觉Encoder映射图片token到LLM的向量空间，达成了几乎实时的图片识别速度，但是也基本只能在顶配手机上运行起来。<https://github.com/apple-aiml-research/ml-fastvlm>
 
-![Llama.cpp iOS 端侧部署实践配图]({{ '/assets/posts/llama-cpp-ios/1419.jpeg' | relative_url }})
+![Llama.cpp iOS 端侧部署实践配图](/assets/posts/llama-cpp-ios/1419.jpeg)
 
 个人体感上，端侧模型的性能，直到Gemma4-e2b才真正解决，变得相对可用，内存占用也到达一个相对合理的范围。未来直接调用Apple/Google提供的内置模型进行长久推理，或者是自行部署模型，都会是一个相对简单的事情。
 
@@ -272,7 +272,7 @@ DDPM → Latent Diffusion ───┴→ Stable Diffusion → SDXL
 
 - **新一代训练基础设施**：多模态训练效率接近纯文本训练，同时采用异步强化学习框架，支持超大规模智能体脚手架和训练环境的编排与调度。
 
-![Llama.cpp iOS 端侧部署实践配图]({{ '/assets/posts/llama-cpp-ios/256.png' | relative_url }})
+![Llama.cpp iOS 端侧部署实践配图](/assets/posts/llama-cpp-ios/256.png)
 
 解读：
 
@@ -282,7 +282,7 @@ DDPM → Latent Diffusion ───┴→ Stable Diffusion → SDXL
 
 上一代[Qwen3-VL](https://arxiv.org/abs/2511.21631)是外挂视觉Encoder的模式，也就是先训练了一个LLM，再单独加一个视觉的Encoder，在两者分别预训练结束后，通过视觉—语言对齐预训练来融合视觉、文本的特征。Qwen3.5是统一多模态的模式，内置了Vision Encoder，预训练阶段VisionEncoder和LLM同时训练，官方认为怎么做能够提升模型在文本、视觉、Agent等Benchmark上的效果。
 
-![Llama.cpp iOS 端侧部署实践配图]({{ '/assets/posts/llama-cpp-ios/1469.png' | relative_url }})
+![Llama.cpp iOS 端侧部署实践配图](/assets/posts/llama-cpp-ios/1469.png)
 
 1. **高效的混合架构：****[代码](https://github.com/huggingface/transformers/blob/main/src/transformers/models/qwen3_5/modeling_qwen3_5.py#L504)**
 
@@ -317,7 +317,7 @@ Qwen3.5的新的东西是：将视觉 Token 与 Gated DeltaNet 混合注意力�
 ```
 {% endraw %}
 
-![Llama.cpp iOS 端侧部署实践配图]({{ '/assets/posts/llama-cpp-ios/1480.png' | relative_url }})
+![Llama.cpp iOS 端侧部署实践配图](/assets/posts/llama-cpp-ios/1480.png)
 
 1. **可扩展的强化学习泛化能力：**
 
@@ -613,7 +613,7 @@ FP8+推理训练解耦+异步调度+推测解码+MoE 路由一致性+多轮任�
 
 1. **内存效率**：我们提供了经过量化处理的模型版本，这些模型是在遵循量化感知训练策略的情况下训练的（Jacob 等人，2018 年，QAT 论文）。这样可以在不影响质量的前提下，减少模型的内存占用和响应时间。
 
-![Llama.cpp iOS 端侧部署实践配图]({{ '/assets/posts/llama-cpp-ios/336.png' | relative_url }})
+![Llama.cpp iOS 端侧部署实践配图](/assets/posts/llama-cpp-ios/336.png)
 
 图源：[A Visual Guide to Gemma 4](https://newsletter.maartengrootendorst.com/p/a-visual-guide-to-gemma-4)
 
@@ -771,7 +771,7 @@ Drafter草拟： 首 都 ， 位 于 华 北
 ```
 {% endraw %}
 
-![Llama.cpp iOS 端侧部署实践配图]({{ '/assets/posts/llama-cpp-ios/1893.png' | relative_url }})
+![Llama.cpp iOS 端侧部署实践配图](/assets/posts/llama-cpp-ios/1893.png)
 
 1. **内存效率**：在训练阶段，引入量化感知QAT，使得模型在量化后的效果更好，原理是：训练时保留浮点主权重，但在每次前向传播中模拟INT4、INT2、INT8量化造成的误差，让模型提前学会补偿这些误差；训练完成后再真正导出低比特权重。
 
@@ -905,7 +905,7 @@ Token ID
 
 <https://huggingface.co/unsloth/Qwen3.5-0.8B-GGUF/tree/main>
 
-![Llama.cpp iOS 端侧部署实践配图]({{ '/assets/posts/llama-cpp-ios/379.png' | relative_url }})
+![Llama.cpp iOS 端侧部署实践配图](/assets/posts/llama-cpp-ios/379.png)
 
 这里的mmproj就是多模态（图片和语音）的权重，Qwen3.5-0.8B 的 `mmproj` 约 205 MB，主要就是完整视觉塔和 Merger，推理的时候Prompt 中先放置视觉占位符：
 
@@ -942,7 +942,7 @@ Token ID
 
 <https://huggingface.co/google/gemma-4-E2B-it-qat-q4_0-gguf/tree/main>
 
-![Llama.cpp iOS 端侧部署实践配图]({{ '/assets/posts/llama-cpp-ios/387.png' | relative_url }})
+![Llama.cpp iOS 端侧部署实践配图](/assets/posts/llama-cpp-ios/387.png)
 
 ### 推理框架 Llama.cpp
 
@@ -952,7 +952,7 @@ Token ID
 
 比如<https://ollama.com/>、<https://lmstudio.ai/>、<https://chatboxai.app/en>都是以llama.cpp为推理内核的流行的本地模型对话应用。
 
-![Llama.cpp iOS 端侧部署实践配图]({{ '/assets/posts/llama-cpp-ios/392.png' | relative_url }})
+![Llama.cpp iOS 端侧部署实践配图](/assets/posts/llama-cpp-ios/392.png)
 
 {% raw %}
 ```text
@@ -1023,7 +1023,7 @@ Swift
 
 一个大的context管理模型的推理上下文。
 
-![Llama.cpp iOS 端侧部署实践配图]({{ '/assets/posts/llama-cpp-ios/400.png' | relative_url }})
+![Llama.cpp iOS 端侧部署实践配图](/assets/posts/llama-cpp-ios/400.png)
 
 #### 模型架构实现
 
@@ -1040,9 +1040,9 @@ Swift
 
 从模型的graph，就可以了解到模型在推理时候的具体实现了：
 
-![Llama.cpp iOS 端侧部署实践配图]({{ '/assets/posts/llama-cpp-ios/2527.png' | relative_url }})
+![Llama.cpp iOS 端侧部署实践配图](/assets/posts/llama-cpp-ios/2527.png)
 
-![Llama.cpp iOS 端侧部署实践配图]({{ '/assets/posts/llama-cpp-ios/2529.png' | relative_url }})
+![Llama.cpp iOS 端侧部署实践配图](/assets/posts/llama-cpp-ios/2529.png)
 
 #### Metal 后端文件
 
@@ -1076,7 +1076,7 @@ Swift
 
 我们可以发起 `1,000,000` 个 Metal 线程，但 GPU 可能每次只让其中几千或几万个处于活跃状态，其余排队执行。
 
-![Llama.cpp iOS 端侧部署实践配图]({{ '/assets/posts/llama-cpp-ios/417.png' | relative_url }})
+![Llama.cpp iOS 端侧部署实践配图](/assets/posts/llama-cpp-ios/417.png)
 
 不过其实有更高效的卷积方式，把卷积拆成 im2col + mul\_mat：<https://github.com/ggml-org/llama.cpp/blob/master/ggml/src/ggml.c#L4748-L4775>，或者是`GGML_OP_SSM_CONV`的
 
@@ -1244,7 +1244,7 @@ GGUF 的重要价值是：
 
 实际推荐直接使用第一种或者第二种，第三种虽然和第二种一样也是[mattt](https://github.com/mattt)大神维护的项目，但是更新迭代特别缓慢。比如我在使用第三种的时候发现依赖的llama.cpp版本太低，导致无法使用多模态能力，就只能自己切分支打XCFramework了。
 
-![Llama.cpp iOS 端侧部署实践配图]({{ '/assets/posts/llama-cpp-ios/467.png' | relative_url }})
+![Llama.cpp iOS 端侧部署实践配图](/assets/posts/llama-cpp-ios/467.png)
 
 Swift的推理框架比较荒凉，也包括基于CoreML的swfit-transformer，等支持Qwen3.5等到花都谢了。
 
@@ -1444,10 +1444,10 @@ llama_prepare_model_devices: using device MTL0 (Apple A19 Pro GPU) (unknown id) 
 
 <div class="feishu-table" role="region" aria-label="对比表，可横向滚动" tabindex="0"><table>
 <tr><td>设备情况</td><td>Qwen3.5-0.8 本地评测</td><td>Gemma4-e2b本地评测</td></tr>
-<tr><td><img src="{{ '/assets/posts/llama-cpp-ios/2626.jpg' | relative_url }}" alt="Llama.cpp iOS 端侧部署实践配图" loading="lazy"></td><td><img src="{{ '/assets/posts/llama-cpp-ios/2628.jpg' | relative_url }}" alt="Llama.cpp iOS 端侧部署实践配图" loading="lazy"></td><td><img src="{{ '/assets/posts/llama-cpp-ios/2630.jpg' | relative_url }}" alt="Llama.cpp iOS 端侧部署实践配图" loading="lazy"></td></tr>
+<tr><td><img src="/assets/posts/llama-cpp-ios/2626.jpg" alt="Llama.cpp iOS 端侧部署实践配图" loading="lazy"></td><td><img src="/assets/posts/llama-cpp-ios/2628.jpg" alt="Llama.cpp iOS 端侧部署实践配图" loading="lazy"></td><td><img src="/assets/posts/llama-cpp-ios/2630.jpg" alt="Llama.cpp iOS 端侧部署实践配图" loading="lazy"></td></tr>
 <tr><td>11.4GB 6core Metal后端</td><td>85.09token/s 内存峰值1G</td><td>37.81token/s，内存峰值4G<br>
 (PocketAI的运行配置没有优化过， gpu_layer=99常驻内存，应当改成n_gpu_layers = 0， 减小峰值<br>
-<img src="{{ '/assets/posts/llama-cpp-ios/2638.png' | relative_url }}" alt="Llama.cpp iOS 端侧部署实践配图" loading="lazy"><br>
+<img src="/assets/posts/llama-cpp-ios/2638.png" alt="Llama.cpp iOS 端侧部署实践配图" loading="lazy"><br>
 )</td></tr>
 </table></div>
 
@@ -1488,7 +1488,7 @@ llama_prepare_model_devices: using device MTL0 (Apple A19 Pro GPU) (unknown id) 
 
 工具调用的定义在system prompt中添加上就可以。
 
-![Llama.cpp iOS 端侧部署实践配图]({{ '/assets/posts/llama-cpp-ios/494.png' | relative_url }})
+![Llama.cpp iOS 端侧部署实践配图](/assets/posts/llama-cpp-ios/494.png)
 
 - Qwen3.5-0.8B的回复速度更快，如果不死循环，并且更好控制，体验上会好很多
 
@@ -1559,7 +1559,7 @@ Gemma的ChatTemplate和Qwen的ChatTemplate是完全不同的：
 
 <a href="https://www.youtube.com/watch?v=2mrGMMmrVNE">观看视频</a>
 
-![Llama.cpp iOS 端侧部署实践配图]({{ '/assets/posts/llama-cpp-ios/2717.jpeg' | relative_url }})
+![Llama.cpp iOS 端侧部署实践配图](/assets/posts/llama-cpp-ios/2717.jpeg)
 
 ### 坑
 
@@ -1699,9 +1699,9 @@ llama.cpp 的 Metal kernel 已经针对量化权重的矩阵向量乘进行了�
 - 从huggingface上直接下载模型运行即可，当然6 token/s很慢，设备是红米K50(2022年红米旗舰)
 
 <div class="feishu-table" role="region" aria-label="对比表，可横向滚动" tabindex="0"><table>
-<tr><td><img src="{{ '/assets/posts/llama-cpp-ios/2724.jpg' | relative_url }}" alt="Llama.cpp iOS 端侧部署实践配图" loading="lazy"><br>
-<img src="{{ '/assets/posts/llama-cpp-ios/2726.jpg' | relative_url }}" alt="Llama.cpp iOS 端侧部署实践配图" loading="lazy"><br>
-<img src="{{ '/assets/posts/llama-cpp-ios/2728.jpg' | relative_url }}" alt="Llama.cpp iOS 端侧部署实践配图" loading="lazy"></td></tr>
+<tr><td><img src="/assets/posts/llama-cpp-ios/2724.jpg" alt="Llama.cpp iOS 端侧部署实践配图" loading="lazy"><br>
+<img src="/assets/posts/llama-cpp-ios/2726.jpg" alt="Llama.cpp iOS 端侧部署实践配图" loading="lazy"><br>
+<img src="/assets/posts/llama-cpp-ios/2728.jpg" alt="Llama.cpp iOS 端侧部署实践配图" loading="lazy"></td></tr>
 </table></div>
 
 1. [Qwen3.5 端侧小模型测评：从 0.8B 到 9B](https://zhuanlan.zhihu.com/p/2011914556159582443)
