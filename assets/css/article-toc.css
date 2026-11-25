@@ -16,7 +16,7 @@
     padding-right: .35rem;
     overflow-anchor: none;
   }
-  #toc-wrapper > .panel-heading { margin-top: 0; padding-top: 0; }
+  #toc-wrapper::before { display: none; }
   #toc-wrapper #toc .is-collapsed { max-height: none; }
   #toc-wrapper #toc a {
     white-space: normal;
