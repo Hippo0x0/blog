@@ -1,0 +1,29 @@
+/* Keep article navigation visible from the first screen. */
+@media (min-width: 1200px) {
+  #panel-wrapper > .access,
+  #panel-wrapper > .toc-border-cover { display: none; }
+  #panel-wrapper #toc-wrapper {
+    position: sticky;
+    top: 4.5rem;
+    padding-top: 1rem;
+    max-height: calc(100dvh - 5.5rem);
+  }
+  #toc-wrapper #toc {
+    max-height: calc(100dvh - 10rem);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+    padding-right: .35rem;
+  }
+  #toc-wrapper #toc .is-collapsed { max-height: none; }
+  #toc-wrapper #toc a {
+    white-space: normal;
+    overflow-wrap: anywhere;
+    line-height: 1.5;
+    padding-block: .25rem;
+  }
+  #toc-wrapper #toc .is-active-link {
+    color: var(--link-color);
+    font-weight: 600;
+  }
+}
