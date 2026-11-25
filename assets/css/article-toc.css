@@ -14,9 +14,7 @@
     overscroll-behavior: contain;
     scrollbar-width: thin;
     padding-right: .35rem;
-    overflow-anchor: none;
   }
-  #toc-wrapper::before { display: none; }
   #toc-wrapper #toc .is-collapsed { max-height: none; }
   #toc-wrapper #toc a {
     white-space: normal;
@@ -28,4 +26,10 @@
     color: var(--link-color);
     font-weight: 600;
   }
+}
+
+@media (min-width: 1200px) {
+  #toc-wrapper::before { display: none; }
+  #toc-wrapper #toc { overflow-anchor: none; }
+  #toc-wrapper #toc .toc-list { max-height: none !important; transition: none !important; }
 }
